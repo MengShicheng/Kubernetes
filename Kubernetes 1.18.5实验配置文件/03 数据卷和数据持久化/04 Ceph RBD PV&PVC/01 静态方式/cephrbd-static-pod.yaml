@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cephrbd-static-pod
+spec:
+  containers:
+  - name: cephrbd-static-pod
+    image: busybox
+    args:
+    - /bin/sh
+    - -c
+    - sleep 3000
+    volumeMounts:
+    - name: data
+      mountPath: /data
+      readOnly: false
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: cephrbd-static-pvc

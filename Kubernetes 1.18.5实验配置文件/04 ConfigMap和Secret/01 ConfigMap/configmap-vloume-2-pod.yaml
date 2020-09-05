@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-vloume-2-pod
+spec:
+  containers:
+  - name: configmap-vloume-2-pod
+    image: busybox
+    args:
+    - /bin/sh
+    - -c
+    - sleep 3000
+    volumeMounts:
+    - name: foo
+      mountPath: /etc/foo
+      readOnly: true
+  volumes:
+  - name: foo
+    configMap:
+      name: configmap
+      items:
+      - key: config1
+        path: config/xxx
+      - key: config2
+        path: config/yyy

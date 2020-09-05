@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthcheck
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      run: healthcheck
+  template:
+    metadata:
+      labels:
+        run: healthcheck
+    spec:
+      containers:
+      - name: healthcheck
+        image: nginx
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /healthy
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5

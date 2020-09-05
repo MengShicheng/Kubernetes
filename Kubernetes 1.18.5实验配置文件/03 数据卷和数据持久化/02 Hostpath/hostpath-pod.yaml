@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostpath-pod
+spec:
+  containers:
+  - name: logger
+    image: busybox
+    volumeMounts:
+    - name: varlog
+      mountPath: /var/log
+    args:
+    - /bin/sh
+    - -c
+    - echo "hello logger" > /var/log/logger ; sleep 3000
+  volumes:
+  - name: varlog
+    hostPath:
+      path: /var/log

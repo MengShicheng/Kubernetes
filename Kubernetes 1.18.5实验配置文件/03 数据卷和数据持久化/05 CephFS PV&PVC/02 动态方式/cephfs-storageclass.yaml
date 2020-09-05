@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: cephfs-storageclass
+provisioner: ceph.com/cephfs
+parameters:
+  monitors: 192.168.0.100:6789
+  adminId: admin
+  adminSecretName: ceph-dynamic-secret
+  adminSecretNamespace: default

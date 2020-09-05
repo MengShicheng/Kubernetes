@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: glusterfs-dynamic-pod
+spec:
+  containers:
+  - name: glusterfs-dynamic-pod
+    image: busybox
+    args:
+    - /bin/sh
+    - -c
+    - sleep 3000
+    volumeMounts:
+    - name: data
+      mountPath: /data
+      readOnly: false
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: glusterfs-dynamic-pvc

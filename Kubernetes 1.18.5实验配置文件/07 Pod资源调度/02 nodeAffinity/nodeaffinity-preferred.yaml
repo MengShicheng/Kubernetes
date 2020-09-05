@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeaffinity-preferred
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      run: nodeaffinity-preferred
+  template:
+    metadata:
+      labels:
+        run: nodeaffinity-preferred
+    spec:
+      containers:
+      - name: nodeaffinity-preferred
+        image: nginx
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: select
+                operator: In
+                values:
+                - prefer

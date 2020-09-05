@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tolerations
+  labels:
+    run: tolerations
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      run: tolerations
+  template:
+    metadata:
+      labels:
+        run: tolerations
+    spec:
+      containers:
+      - name: tolerations
+        image: nginx
+      tolerations:
+      - key: node-role.kubernetes.io
+        operator: Equal
+        value: worker1
+        effect: NoSchedule

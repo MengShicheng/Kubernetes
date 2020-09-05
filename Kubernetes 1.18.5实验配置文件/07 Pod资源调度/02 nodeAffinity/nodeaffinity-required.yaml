@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeaffinity-required
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      run: nodeaffinity-required
+  template:
+    metadata:
+      labels:
+        run: nodeaffinity-required
+    spec:
+      containers:
+      - name: nodeaffinity-required
+        image: nginx
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: NotIn
+                values:
+                - worker1

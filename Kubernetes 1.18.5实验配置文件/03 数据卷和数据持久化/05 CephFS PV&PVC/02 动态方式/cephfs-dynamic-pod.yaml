@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cephfs-dynamic-pod
+spec:
+  containers:
+  - name: cephfs-dynamic-pod
+    image: busybox
+    args:
+    - /bin/sh
+    - -c
+    - sleep 3000
+    volumeMounts:
+    - name: data
+      mountPath: /data
+      readOnly: false
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: cephfs-dynamic-pvc

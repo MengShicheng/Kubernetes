@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taints
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      run: taints
+  template:
+    metadata:
+      labels:
+        run: taints
+    spec:
+      containers:
+      - image: nginx
+        name: taints

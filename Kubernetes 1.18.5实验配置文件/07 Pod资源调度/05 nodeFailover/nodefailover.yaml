@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodefailover
+  labels:
+    run: nodefailover
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      run: nodefailover
+  template:
+    metadata:
+      labels:
+        run: nodefailover
+    spec:
+      containers:
+      - name: nodefailover
+        image: nginx

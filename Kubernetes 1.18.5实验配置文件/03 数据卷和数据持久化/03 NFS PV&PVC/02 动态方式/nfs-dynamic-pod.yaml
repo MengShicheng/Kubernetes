@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nfs-dynamic-pod
+spec:
+  containers:
+  - name: nfs-dynamic-pod
+    image: busybox
+    args:
+    - /bin/sh
+    - -c
+    - sleep 3000
+    volumeMounts:
+    - name: data
+      mountPath: /data
+      readOnly: false
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: nfs-dynamic-pvc

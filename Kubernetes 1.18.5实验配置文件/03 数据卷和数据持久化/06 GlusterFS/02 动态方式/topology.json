@@ -1,0 +1,65 @@
+{
+    "clusters": [
+        {
+            "nodes": [
+                {
+                    "node": {
+                        "hostnames": {
+                            "manage": [
+                                "192.168.0.101"
+                            ],
+                            "storage": [
+                                "192.168.0.101"
+                            ]
+                        },
+                        "zone": 1
+                    },
+                    "devices": [
+                        {
+                            "name": "/dev/sdb",
+                            "destroydata": false
+                        }
+                    ]
+                },
+                {
+                    "node": {
+                        "hostnames": {
+                            "manage": [
+                                "192.168.0.102"
+                            ],
+                            "storage": [
+                                "192.168.0.102"
+                            ]
+                        },
+                        "zone": 1
+                    },
+                    "devices": [
+                        {
+                            "name": "/dev/sdb",
+                            "destroydata": false
+                        }
+                    ]
+                },
+                {
+                    "node": {
+                        "hostnames": {
+                            "manage": [
+                                "192.168.0.103"
+                            ],
+                            "storage": [
+                                "192.168.0.103"
+                            ]
+                        },
+                        "zone": 1
+                    },
+                    "devices": [
+                        {
+                            "name": "/dev/sdb",
+                            "destroydata": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

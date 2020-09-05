@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeselector
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      run: nodeselector
+  template:
+    metadata:
+      labels:
+        run: nodeselector
+    spec:
+      containers:
+      - name: nodeselector
+        image: nginx
+      nodeSelector:
+        disktype: ssd

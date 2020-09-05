@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: networkpolicy-allow-cidr-egress
+spec:
+  podSelector:
+    matchLabels:
+      run: deploy
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 192.168.0.100/32
+    ports:
+    - protocol: TCP
+      port: 80

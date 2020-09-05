@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-env-pod
+spec:
+  containers:
+  - name: configmap-env-pod
+    image: busybox
+    args:
+    - /bin/sh
+    - -c
+    - sleep 3000
+    env:
+    - name: CONFIG_1
+      valueFrom:
+        configMapKeyRef:
+          name: configmap
+          key: config1
+    - name: CONFIG_2
+      valueFrom:
+        configMapKeyRef:
+          name: configmap
+          key: config2

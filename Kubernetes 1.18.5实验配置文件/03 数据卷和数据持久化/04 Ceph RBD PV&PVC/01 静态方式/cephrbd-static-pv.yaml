@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cephrbd-static-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: rbd
+  rbd:
+    monitors:
+    - 192.168.0.100:6789
+    pool: cephpool
+    image: cephimage
+    user: admin
+    secretRef:
+      name: cephrbd-static-secret
+    fsType: xfs
+    readOnly: false
+  persistentVolumeReclaimPolicy: Recycle

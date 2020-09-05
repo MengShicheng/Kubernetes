@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podaffinity-preferred
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      run: podaffinity-preferred
+  template:
+    metadata:
+      labels:
+        run: podaffinity-preferred
+    spec:
+      containers:
+      - name: podaffinity-preferred
+        image: nginx
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: run
+                  operator: In
+                  values:
+                  - busybox
+              topologyKey: kubernetes.io/hostname

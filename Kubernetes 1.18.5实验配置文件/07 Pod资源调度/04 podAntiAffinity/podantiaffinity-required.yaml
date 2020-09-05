@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podantiaffinity-required
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      run: podantiaffinity-required
+  template:
+    metadata:
+      labels:
+        run: podantiaffinity-required
+    spec:
+      containers:
+      - name: podantiaffinity-required
+        image: nginx
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: run
+                operator: In
+                values:
+                - busybox
+            topologyKey: kubernetes.io/hostname
